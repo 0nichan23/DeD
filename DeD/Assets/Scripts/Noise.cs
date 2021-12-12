@@ -13,7 +13,6 @@ public static class Noise
             float offsetY = prng.Next(-100000, 100000) + offset.y;
             octavesoffset[i] = new Vector2(offsetX, offsetY);
         }
-
         if (scale <= 0)
         {
             scale = 0.0001f;
@@ -50,7 +49,6 @@ public static class Noise
                     minNoiseHeight = noiseheight;
                 }
                 noiseMap[x, y] = noiseheight;
-
             }
         }
         for (int y = 0; y < mapHeight; y++)
