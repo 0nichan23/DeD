@@ -25,7 +25,6 @@ public static class TextureGenerator
             for (int j = 0; j < width; j++)
             {
                 colors[i * width + j] = Color.Lerp(Color.black, Color.white, heightMap[j, i]);
-                //Debug.Log(noiseMap[i,j]);
             }
         }
         return TextureFromColourMap(colors, width, height);
