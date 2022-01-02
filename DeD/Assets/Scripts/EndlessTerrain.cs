@@ -73,32 +73,29 @@ public class EndlessTerrain : MonoBehaviour
                 }
                 else
                 {
-                   terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, detailLevels, transform, mapMaterial));
+                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, detailLevels, transform, mapMaterial));
                     chunk = terrainChunkDictionary[viewedChunkCoord];
                 }
-                for (int i = 0; i < chunk.detailLevels.Length; i++)
+                if (!chunk.spawned)
                 {
-                    if (chunk.detailLevels[i].lod == 0)
-                    {
-                        activeChunks.Add(chunk);
-                        Vector3 spawnPose = new Vector3(chunk.position.x, 0, chunk.position.y);
-                        //Physics.ClosestPoint();
-                        Debug.Log(spawnPose);
-                    }
+                    ObjectSpawner.Instance.chunkbounds = chunk.bounds;
+                    ObjectSpawner.Instance.Activate();
+                    chunk.spawned = true;
                 }
-                    
-                    //find closest point on mesh 
                 
+
             }
         }
     }
+
+
 
     public class TerrainChunk
     {
 
         GameObject meshObject;
         public Vector2 position;
-        Bounds bounds;
+        public Bounds bounds;
 
         MeshRenderer meshRenderer;
         public MeshFilter meshFilter;
@@ -111,26 +108,23 @@ public class EndlessTerrain : MonoBehaviour
         public MapData mapData;
         bool mapDataReceived;
         int previousLODIndex = -1;
-
+        public bool spawned;
         public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material material)
         {
             this.detailLevels = detailLevels;
-
             position = coord * size;
             bounds = new Bounds(position, Vector2.one * size);
             Vector3 positionV3 = new Vector3(position.x, 0, position.y);
-
             meshObject = new GameObject("Terrain Chunk");
             meshRenderer = meshObject.AddComponent<MeshRenderer>();
             meshFilter = meshObject.AddComponent<MeshFilter>();
             meshCollider = meshObject.AddComponent<MeshCollider>();
             meshRenderer.material = material;
-
+            meshObject.transform.tag = "World";
             meshObject.transform.position = positionV3 * scale;
             meshObject.transform.parent = parent;
             meshObject.transform.localScale = Vector3.one * scale;
             SetVisible(false);
-
             lodMeshes = new LODMesh[detailLevels.Length];
             for (int i = 0; i < detailLevels.Length; i++)
             {
