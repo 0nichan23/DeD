@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
@@ -26,12 +24,13 @@ public class ThirdPersonController : MonoBehaviour
         v = joystick.Vertical;*/
         direction = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
         Movement();
+
     }
 
-   /* void jump()
-    {
-        Debug.Log("jump");
-    }*/
+    /* void jump()
+     {
+         Debug.Log("jump");
+     }*/
 
     void Movement()
     {
