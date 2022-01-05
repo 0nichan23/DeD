@@ -11,6 +11,7 @@ public class EnemyUnit : MonoBehaviour
     public float Energy;
     public float MaxEnergy;
     int level;
+    public int xpValue;
 
     public void TakeDmg(float dmg)
     {
@@ -21,6 +22,7 @@ public class EnemyUnit : MonoBehaviour
         Hp = MaxHp;
         Energy = MaxEnergy;
         level = Random.Range(PlayerUnit.KillCount, PlayerUnit.KillCount+5);
+        xpValue = 3 + level;
     }
 
     public void EnemyAction(PlayerUnit player)

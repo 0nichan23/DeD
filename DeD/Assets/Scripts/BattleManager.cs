@@ -97,8 +97,8 @@ public class BattleManager : MonoBehaviour
     {
         if (victory)
         {
-            //player + xp 
-            //player + loot
+            _player.Xp += _enemy.xpValue;
+            _player.CheckLevelUp();
             Destroy(_enemy.gameObject);
             END();
         }
@@ -118,11 +118,9 @@ public class BattleManager : MonoBehaviour
         _enemy = enemy;
         SetupBars();
         UpdateBars();
-        SpellList.SetActive(false);
+        TurnSpellList();
         StartCoroutine("BattleLoop");
     }
-
-
     void UpdateBars()
     {
         EnemyHpBar.setValue(_enemy.Hp);

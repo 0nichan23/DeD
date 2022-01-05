@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +24,7 @@ public class SpellButton : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("disabled spell");
         if (BattleManager.Instance._player.Energy - Spell.cost < 0)
         {
             gameObject.SetActive(false);

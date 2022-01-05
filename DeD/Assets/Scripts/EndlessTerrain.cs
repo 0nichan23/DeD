@@ -92,7 +92,6 @@ public class EndlessTerrain : MonoBehaviour
 
     public class TerrainChunk
     {
-
         GameObject meshObject;
         public Vector2 position;
         public Bounds bounds;

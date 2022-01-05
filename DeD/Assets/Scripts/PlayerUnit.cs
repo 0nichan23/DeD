@@ -6,14 +6,16 @@ public class PlayerUnit : MonoBehaviour
     public float Attack;
     public float Hp;
     public float MaxHp;
-    //public int[] actionValues = new int[4];
     public float Energy;
     public float MaxEnergy;
-    public Transform pos;
     public static int KillCount;
     public int levelAtstart;
-    public GameObject SpellList;
     public static Spell spellIndex;
+    public float Xp;
+    public float XpToNextLevel;
+    public float SpellPower;
+    public float AttackDmg;
+    public bool levelUpReady;
     public static int level { get; set; }
     public void StartAction(int value, EnemyUnit enemy)
     {
@@ -51,19 +53,28 @@ public class PlayerUnit : MonoBehaviour
             BattleManager.Instance.StartCombat(this, enemy);
         }
     }
+
     private void Start()
     {
-        Hp = MaxHp;
-        Energy = MaxEnergy;
+
         KillCount = 0;
         level = levelAtstart;
+        Xp = 0;
+        XpToNextLevel = 10 + Mathf.Pow(2, level);
+        AttackDmg = level + 2;
+        SpellPower = level;
+        Initiative = 7 + level;
+        MaxHp = 10 * level;
+        MaxEnergy = 10 * level;
+        Hp = MaxHp;
+        Energy = MaxEnergy;
         spellIndex = null;
     }
 
     public void Strike(EnemyUnit enemy)
     {
         BattleText.Instance.changeText("player used strike");
-        enemy.TakeDmg(Attack);
+        enemy.TakeDmg(Attack + AttackDmg);
     }
 
     public void CastSpell(EnemyUnit enemy)
@@ -76,7 +87,7 @@ public class PlayerUnit : MonoBehaviour
                 if (spellIndex.name == "Heal")
                 {
                     Hp += spellIndex.dmg;
-                    if (Hp+spellIndex.dmg >= MaxHp)
+                    if (Hp + spellIndex.dmg >= MaxHp)
                     {
                         Hp = MaxHp;
                     }
@@ -93,7 +104,7 @@ public class PlayerUnit : MonoBehaviour
             }
             spellIndex = null;
         }
-       
+
     }
 
     public void UseItem()
@@ -113,5 +124,45 @@ public class PlayerUnit : MonoBehaviour
         {
             BattleText.Instance.changeText("you couldnt get away ");
         }
+    }
+    public void CheckLevelUp()
+    {
+        if (Xp >= XpToNextLevel)
+        {
+            Xp = Xp - XpToNextLevel;
+            LevelUp();
+        }
+    }
+
+
+    public void LevelUp()
+    {
+        MaxHp += 10;
+        MaxEnergy += 10;
+        Energy = MaxEnergy;
+        Hp = MaxHp;
+        XpToNextLevel = 10 + Mathf.Pow(2, level);
+        levelUpReady = true;
+    }
+
+
+    public void IncreaseStat(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                AttackDmg++;
+                break;
+            case 2:
+                SpellPower++;
+                break;
+            case 3:
+                Initiative++;
+                break;
+            default:
+                break;
+        }
+        levelUpReady = false;
+        CharacterMenu.Instance.LevelUpui.SetActive(false);
     }
 }
