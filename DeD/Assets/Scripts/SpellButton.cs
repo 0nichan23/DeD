@@ -12,10 +12,6 @@ public class SpellButton : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerUnit.level >= Spell.RequiredLevel)
-        {
-            Locked.SetActive(false);
-        }
         cost.text = Spell.cost.ToString();
         dmg.text = Spell.dmg.ToString();
         name.text = Spell.name;
@@ -24,12 +20,19 @@ public class SpellButton : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("disabled spell");
-        if (BattleManager.Instance._player.Energy - Spell.cost < 0)
+        if (PlayerUnit.level >= Spell.RequiredLevel)
         {
-            gameObject.SetActive(false);
+            Locked.SetActive(false);
         }
     }
+    /*  private void OnEnable()
+      { 
+          if (BattleManager.Instance._player.Energy - Spell.cost < 0)
+          {
+              gameObject.SetActive(false);
+              Debug.Log("disabled spell");
+          }
+      }*/
 
     public void Cast()
     {

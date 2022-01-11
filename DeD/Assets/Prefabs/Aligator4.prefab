@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2473248245348897792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3158254917829740283}
+  - component: {fileID: 5964909046093389769}
+  - component: {fileID: 1459580543021433505}
+  - component: {fileID: 2757072859427481045}
+  m_Layer: 0
+  m_Name: Aligator4
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3158254917829740283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473248245348897792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8048397074654696016}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5964909046093389769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473248245348897792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.37, y: 1.07, z: 5.504036}
+  m_Center: {x: 0, y: 0.18, z: 0}
+--- !u!114 &1459580543021433505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473248245348897792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988f317e8e5687941bc5a5cf7c7f1618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4130234803598116906}
+--- !u!114 &2757072859427481045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473248245348897792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a88283044dcf494fa6c8571a4f8cad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Initiative: 0
+  Attack: 0
+  Hp: 0
+  MaxHp: 0
+  Energy: 0
+  MaxEnergy: 0
+  xpValue: 0
+--- !u!1001 &6900261912375821528
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3158254917829740283}
+    m_Modifications:
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267390950276844594, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+        type: 3}
+      propertyPath: m_Name
+      value: Crocodile PolyArt (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1b4bef5ead5cdb4d970bdefcc6054b6, type: 3}
+--- !u!4 &8048397074654696016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3491136168572458632, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6900261912375821528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4130234803598116906 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7391300950309883122, guid: d1b4bef5ead5cdb4d970bdefcc6054b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6900261912375821528}
+  m_PrefabAsset: {fileID: 0}

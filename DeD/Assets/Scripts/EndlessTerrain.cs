@@ -123,6 +123,7 @@ public class EndlessTerrain : MonoBehaviour
             meshObject.transform.position = positionV3 * scale;
             meshObject.transform.parent = parent;
             meshObject.transform.localScale = Vector3.one * scale;
+            meshObject.gameObject.layer = 6;
             SetVisible(false);
             lodMeshes = new LODMesh[detailLevels.Length];
             for (int i = 0; i < detailLevels.Length; i++)

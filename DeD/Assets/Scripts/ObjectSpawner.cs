@@ -30,7 +30,6 @@ public class ObjectSpawner : MonoBehaviour
     }
     Vector3 randomPoint()
     {
-        //Debug.Log(chunkbounds.min + " " + chunkbounds.max);
         Vector3 pos = new Vector3(Random.Range(-1190, 1190), 25, Random.Range(-1190, 1190));
         return pos;
     }
@@ -47,7 +46,7 @@ public class ObjectSpawner : MonoBehaviour
                 {
                     GameObject go = Instantiate(TreesToSpawn[Random.Range(0, TreesToSpawn.Count - 1)], hit.point, new Quaternion());
                     go.transform.SetParent(Trees.transform);
-                    Debug.Log("spawned a tree at " + hit.point);
+                  //  Debug.Log("spawned a tree at " + hit.point);
                 }
             }
         }
@@ -64,7 +63,6 @@ public class ObjectSpawner : MonoBehaviour
                 {
                     GameObject go = Instantiate(SpawnersToCreate[Random.Range(0, SpawnersToCreate.Count - 1)], hit.point, new Quaternion());
                     go.transform.SetParent(Spawners.transform);
-                    Debug.Log("created a mob spawner at " + hit.point);
                 }
             }
         }
@@ -81,5 +79,7 @@ public class ObjectSpawner : MonoBehaviour
         {
             spawnMob(randomPoint());
         }
+        CharacterMenu.Instance.TurnCharacterPage();
+        CharacterMenu.Instance.TurnCharacterPage();
     }
 }

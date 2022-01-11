@@ -17,7 +17,7 @@ public class BattleManager : MonoBehaviour
     public Bar EnemyHpBar;
     public Bar EnemyEnergyBar;
     public GameObject SpellList;
-
+    public GameObject ItemList;
 
     private void Awake()
     {
@@ -31,8 +31,10 @@ public class BattleManager : MonoBehaviour
     }
 
     public int? attackNum = null;
+    public int? loot = null;
     IEnumerator BattleLoop()
     {
+        
         while (combatEnded == false)
         {
             if (_player.Initiative >= _enemy.Initiative)
@@ -93,25 +95,28 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(turnDelay);
         }
     }
+
     public void StopBattleLoop(bool victory)
     {
+        StopCoroutine("BattleLoop");
         if (victory)
         {
+            WinScreen.Instance.GenerateItem();
+            WinScreen.Instance.enemy = _enemy;
+            WinScreen.Instance.Set(true);
             _player.Xp += _enemy.xpValue;
             _player.CheckLevelUp();
-            Destroy(_enemy.gameObject);
-            END();
+
         }
         else
         {
             //gamemanager.losegame()
         }
-        StopCoroutine("BattleLoop");
     }
 
     public void StartCombat(PlayerUnit player, EnemyUnit enemy)
     {
-        map.SetActive(false);
+        
         UI.SetActive(false);
         CombatUI.SetActive(true);
         _player = player;
@@ -119,6 +124,9 @@ public class BattleManager : MonoBehaviour
         SetupBars();
         UpdateBars();
         TurnSpellList();
+        SpellList.SetActive(false);
+        ItemList.SetActive(false);
+        WinScreen.Instance.Set(false);
         StartCoroutine("BattleLoop");
     }
     void UpdateBars()
@@ -134,12 +142,50 @@ public class BattleManager : MonoBehaviour
         EnemyEnergyBar.SetMaxValue(_enemy.MaxEnergy);
         PlayerHpBar.SetMaxValue(_player.MaxHp);
         PlayerEnergyBar.SetMaxValue(_player.MaxEnergy);
-        Debug.Log("bars set up");
     }
 
     public void SetAttackNumValue(int Num)
     {
-        attackNum = Num;
+        if (Num == 1 && _player.Energy - PlayerUnit.spellIndex.cost >= 0)
+        {
+            attackNum = Num;
+        }
+        else if (Num == 2)
+        {
+            switch (_player.itemIndex)
+            {
+                case 1:
+                    if (CharacterMenu.Instance.HpPots.Amount > 0)
+                    {
+                        attackNum = Num;
+                    }
+                    else
+                    {
+                        BattleText.Instance.changeText("You dont have any more potions");
+                    }
+                    break;
+                case 2:
+                    if (CharacterMenu.Instance.ManaPots.Amount > 0)
+                    {
+                        attackNum = Num;
+                    }
+                    else
+                    {
+                        BattleText.Instance.changeText("You dont have any more potions");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (Num != 1 && Num != 2)
+        {
+            attackNum = Num;
+        }
+        else
+        {
+            BattleText.Instance.changeText("Not enough energy to cast");
+        }
     }
 
     public void TurnSpellList()
@@ -151,6 +197,19 @@ public class BattleManager : MonoBehaviour
         else
         {
             SpellList.SetActive(true);
+
+        }
+    }
+
+    public void TurnItemList()
+    {
+        if (ItemList.activeSelf)
+        {
+            ItemList.SetActive(false);
+        }
+        else
+        {
+            ItemList.SetActive(true);
         }
     }
 
@@ -168,6 +227,8 @@ public class BattleManager : MonoBehaviour
         UI.SetActive(true);
         CombatUI.SetActive(false);
         BattleText.Instance.ResetText();
+        Destroy(_enemy.gameObject);
+        _player.GetComponent<ThirdPersonController>().enabled = true;
     }
 
 

@@ -10,31 +10,42 @@ public class ThirdPersonController : MonoBehaviour
     public float speed = 5f;
     Rigidbody rb;
     Vector3 direction;
-
+    public bool grounded;
+    public Transform GroundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask Ground;
+    public GameObject Knight;
+    Animator anim;
     private void Start()
     {
         //cc = GetComponent < CharacterController>();
         rb = GetComponent<Rigidbody>();
+        anim = Knight.GetComponent<Animator>();
     }
 
     private void Update()
     {
-        /*
-        h = joystick.Horizontal;
-        v = joystick.Vertical;*/
+        grounded = Physics.CheckSphere(GroundCheck.position, groundDistance, Ground);
         direction = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-        Movement();
-
+        if (grounded)
+        {
+            Movement();
+        }
     }
-
-    /* void jump()
-     {
-         Debug.Log("jump");
-     }*/
 
     void Movement()
     {
-        rb.velocity = direction * speed;
+        if (direction * speed != Vector3.zero)
+        {
+            rb.velocity = direction * speed;
+            anim.SetFloat("Speed", 1);
+        }
+        else
+        {
+            anim.SetFloat("Speed", 0);
+
+        }
+
     }
 
 
