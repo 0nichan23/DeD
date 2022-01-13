@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
 {
-    public Transform Cam;
-    public float h;
-    public float v;
-    public FixedButton Button;
+    //public FixedButton Button;
     public FixedJoystick joystick;
     public float speed = 5f;
     Rigidbody rb;
@@ -16,6 +13,8 @@ public class ThirdPersonController : MonoBehaviour
     public LayerMask Ground;
     public GameObject Knight;
     Animator anim;
+    Vector3 relativeMove;
+    public static bool isTouched;
     private void Start()
     {
         //cc = GetComponent < CharacterController>();
@@ -25,19 +24,24 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+        {
+            isTouched = true;
+
+        }
+        else
+        {
+            isTouched = false;
+        }
         grounded = Physics.CheckSphere(GroundCheck.position, groundDistance, Ground);
         direction = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-        if (grounded)
+        relativeMove = transform.forward * joystick.Vertical + transform.right * joystick.Horizontal;
+        if (grounded && isTouched)
         {
             Movement();
         }
-    }
-
-    void Movement()
-    {
-        if (direction * speed != Vector3.zero)
+        if (relativeMove * speed != Vector3.zero)
         {
-            rb.velocity = direction * speed;
             anim.SetFloat("Speed", 1);
         }
         else
@@ -45,7 +49,14 @@ public class ThirdPersonController : MonoBehaviour
             anim.SetFloat("Speed", 0);
 
         }
+    }
 
+    void Movement()
+    {
+        if (relativeMove * speed != Vector3.zero)
+        {
+            rb.velocity = relativeMove * speed;
+        }
     }
 
 
