@@ -97,6 +97,7 @@ public class PlayerUnit : MonoBehaviour
     public void Strike(EnemyUnit enemy)
     {
         BattleText.Instance.changeText("player used strike");
+        CombatAnimation.Instance.KnightAttack();
         enemy.TakeDmg(Attack + CharacterMenu.Instance.SwordDmg.Dmg);
     }
 
@@ -208,6 +209,7 @@ public class PlayerUnit : MonoBehaviour
         }
         levelUpReady = false;
         CharacterMenu.Instance.updateTexts();
+        CharacterMenu.Instance.UpdateBars();
         CharacterMenu.Instance.LevelUpui.SetActive(false);
     }
 }

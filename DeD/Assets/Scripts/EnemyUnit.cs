@@ -46,11 +46,13 @@ public class EnemyUnit : MonoBehaviour
     void Bite(PlayerUnit player)
     {
         player.TakeDmg(Attack + level);
+        CombatAnimation.Instance.CrocBite();
         BattleText.Instance.changeText("enemy used bite and dealt " + (Attack + level));
     }
     void TailWhip(PlayerUnit player)
     {
         player.TakeDmg(Attack);
+        CombatAnimation.Instance.CrocTailSmah();
         BattleText.Instance.changeText("enemy used bite and dealt " + Attack);
     }
 

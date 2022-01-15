@@ -17,7 +17,6 @@ public class ThirdPersonController : MonoBehaviour
     public static bool isTouched;
     private void Start()
     {
-        //cc = GetComponent < CharacterController>();
         rb = GetComponent<Rigidbody>();
         anim = Knight.GetComponent<Animator>();
     }
@@ -27,7 +26,6 @@ public class ThirdPersonController : MonoBehaviour
         if (joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
             isTouched = true;
-
         }
         else
         {
@@ -47,7 +45,6 @@ public class ThirdPersonController : MonoBehaviour
         else
         {
             anim.SetFloat("Speed", 0);
-
         }
     }
 
