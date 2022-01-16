@@ -9,6 +9,7 @@ public class CharacterMenu : MonoBehaviour
     public Text text4;
     public PlayerUnit player;
     public GameObject LevelUpui;
+    public GameObject LevelUpSign;
     public GameObject CharPage;
     public static CharacterMenu Instance;
     public Bar Hpbar;

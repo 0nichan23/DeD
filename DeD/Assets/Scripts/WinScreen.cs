@@ -10,13 +10,8 @@ public class WinScreen : MonoBehaviour
     ItemDispplay Lootitem;
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+       
     }
 
     public void ClaimLoot()

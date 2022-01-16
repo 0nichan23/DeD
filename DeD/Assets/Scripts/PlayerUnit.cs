@@ -110,6 +110,7 @@ public class PlayerUnit : MonoBehaviour
                 Energy -= spellIndex.cost;
                 if (spellIndex.name == "Heal")
                 {
+                    CombatAnimation.Instance.Heal.Play();
                     Hp += spellIndex.dmg;
                     if (Hp + spellIndex.dmg >= MaxHp)
                     {
@@ -118,6 +119,27 @@ public class PlayerUnit : MonoBehaviour
                 }
                 else
                 {
+                    switch (spellIndex.name)
+                    {
+                        case "Dark Pulse":
+                            CombatAnimation.Instance.Heal.Play();
+                            break;
+                        case "Firebolt":
+                            CombatAnimation.Instance.Fire.Play();
+                            break;
+                        case "Ice Fang":
+                            CombatAnimation.Instance.Ice.Play();
+                            break;
+                        case "Sunbeam":
+                            CombatAnimation.Instance.Light.Play();
+                            break;
+                        case "Arcball":
+                            CombatAnimation.Instance.Lightning.Play();
+                            break;
+                        case "Posion Dart":
+                            CombatAnimation.Instance.Poison.Play();
+                            break;
+                    }
                     enemy.TakeDmg(spellIndex.dmg + SpellPower);
                 }
                 BattleText.Instance.changeText("You cast the spell " + spellIndex.name + " and deal " + (spellIndex.dmg + SpellPower));
@@ -181,6 +203,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void LevelUp()
     {
+        CharacterMenu.Instance.LevelUpSign.SetActive(true);
         levelUpReady = true;
     }
 
@@ -211,5 +234,7 @@ public class PlayerUnit : MonoBehaviour
         CharacterMenu.Instance.updateTexts();
         CharacterMenu.Instance.UpdateBars();
         CharacterMenu.Instance.LevelUpui.SetActive(false);
+        CharacterMenu.Instance.LevelUpSign.SetActive(false);
+
     }
 }

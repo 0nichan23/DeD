@@ -7,15 +7,16 @@ public class CombatAnimation : MonoBehaviour
     public static CombatAnimation Instance;
     public Animator croci;
     public Animator abiri;
+    public ParticleSystem Fire;
+    public ParticleSystem Poison;
+    public ParticleSystem Ice;
+    public ParticleSystem Lightning;
+    public ParticleSystem Dark;
+    public ParticleSystem Light;
+    public ParticleSystem Heal;
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void CrocTailSmah()

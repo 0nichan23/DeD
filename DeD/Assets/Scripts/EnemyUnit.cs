@@ -53,7 +53,7 @@ public class EnemyUnit : MonoBehaviour
     {
         player.TakeDmg(Attack);
         CombatAnimation.Instance.CrocTailSmah();
-        BattleText.Instance.changeText("enemy used bite and dealt " + Attack);
+        BattleText.Instance.changeText("enemy used tail smack and dealt " + Attack);
     }
 
 
